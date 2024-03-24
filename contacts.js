@@ -51,8 +51,6 @@ async function removeContact(contactId) {
   }
 }
 
-removeContact("qdggE76Jtbfd9eWJHrssH").then((result) => console.log(result));
-
 async function addContact(name, email, phone) {
   try {
     const readContacts = await fs.readFile(contactsPath);
@@ -78,6 +76,9 @@ async function addContact(name, email, phone) {
   }
 }
 
-addContact("Anna", "anna@gerz.com", "(508) 252-5118)").then((result) =>
-  console.log(result)
-);
+module.exports = {
+  listContacts,
+  getContactById,
+  removeContact,
+  addContact,
+};
