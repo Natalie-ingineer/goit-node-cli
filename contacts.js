@@ -17,8 +17,7 @@ async function listContacts() {
 
 async function getContactById(contactId) {
   try {
-    const readContacts = await fs.readFile(contactsPath);
-    const contactOject = JSON.parse(readContacts);
+    const contactOject = await listContacts();
     const contactById = contactOject.find((item) => item.id === contactId);
 
     return contactById || null;
@@ -30,8 +29,7 @@ async function getContactById(contactId) {
 
 async function removeContact(contactId) {
   try {
-    const readContacts = await fs.readFile(contactsPath);
-    const contactOject = JSON.parse(readContacts);
+    const contactOject = await listContacts();
     const contactById = contactOject.find((item) => item.id === contactId);
     if (contactById !== -1) {
       const removeContact = contactOject.splice(contactById, 1);
@@ -53,8 +51,7 @@ async function removeContact(contactId) {
 
 async function addContact(name, email, phone) {
   try {
-    const readContacts = await fs.readFile(contactsPath);
-    const contactOject = JSON.parse(readContacts);
+    const contactOject = await listContacts();
 
     const newContact = {
       id: uuidv4(),
