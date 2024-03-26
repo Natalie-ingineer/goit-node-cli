@@ -10,8 +10,7 @@ async function listContacts() {
     const contactOject = JSON.parse(readContacts);
     return contactOject;
   } catch (error) {
-    error.message = "Error! Try again";
-    throw error;
+    console.log(error.message);
   }
 }
 
@@ -22,15 +21,14 @@ async function getContactById(contactId) {
 
     return contactById || null;
   } catch (error) {
-    error.message = "Error! Try again";
-    throw error;
+    console.log(error.message);
   }
 }
 
 async function removeContact(contactId) {
   try {
     const contactOject = await listContacts();
-    const contactById = contactOject.find((item) => item.id === contactId);
+    const contactById = contactOject.findIndex((item) => item.id === contactId);
     if (contactById === -1) {
       return null;
     }
@@ -39,8 +37,7 @@ async function removeContact(contactId) {
     await fs.writeFile(contactsPath, JSON.stringify(contactOject, null, 2));
     return removeContact;
   } catch (error) {
-    error.message = "Error! Try again";
-    throw error;
+    console.log(error.message);
   }
 }
 
@@ -63,8 +60,7 @@ async function addContact(name, email, phone) {
     );
     return newContact;
   } catch (error) {
-    error.message = "Error! Try again";
-    throw error;
+    console.log(error.message);
   }
 }
 
